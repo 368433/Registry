@@ -72,6 +72,8 @@ class _MorpheusContainer (object):
 			if self.patient_id:
 				pt_id = self.patient_id
 				self.add_item(self.items_toAdd, pt_id = pt_id)
+			else:
+				self.add_item(self.items_toAdd)
 		
 		def show_options(sender):
 			show_all_options(self)
