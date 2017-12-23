@@ -1,0 +1,87 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{48, 209}, {107, 103}}",
+        "class" : "Button",
+        "attributes" : {
+          "action" : "show_morpheus",
+          "frame" : "{{118, 202}, {80, 32}}",
+          "title" : "Registry",
+          "uuid" : "89F22BE6-B051-4036-9A71-90E6A0206950",
+          "class" : "Button",
+          "background_color" : "RGBA(1.000000,0.800000,0.800000,1.000000)",
+          "name" : "Registry",
+          "font_size" : 15
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{48, 351}, {107, 102}}",
+        "class" : "Button",
+        "attributes" : {
+          "action" : "",
+          "frame" : "{{135, 309}, {80, 32}}",
+          "title" : "Notes",
+          "uuid" : "7071CE67-146B-4D9F-9FEF-127A87306483",
+          "background_color" : "RGBA(1.000000,0.566667,0.566667,1.000000)",
+          "class" : "Button",
+          "name" : "button1",
+          "font_size" : 15
+        },
+        "selected" : true
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{188, 209}, {106, 103}}",
+        "class" : "Button",
+        "attributes" : {
+          "frame" : "{{135, 309}, {80, 32}}",
+          "title" : "Analytics",
+          "class" : "Button",
+          "background_color" : "RGBA(1.000000,0.800000,0.700000,1.000000)",
+          "uuid" : "7071CE67-146B-4D9F-9FEF-127A87306483",
+          "font_size" : 15,
+          "name" : "button1"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{188, 351}, {107, 102}}",
+        "class" : "Button",
+        "attributes" : {
+          "frame" : "{{135, 309}, {80, 32}}",
+          "title" : "Reminders",
+          "uuid" : "7071CE67-146B-4D9F-9FEF-127A87306483",
+          "background_color" : "RGBA(0.841981,0.729717,0.729717,1.000000)",
+          "class" : "Button",
+          "name" : "button1",
+          "font_size" : 15
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {350, 650}}",
+    "class" : "View",
+    "attributes" : {
+      "custom_class" : "",
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]
