@@ -203,16 +203,22 @@ def show_full_data(sender):
 def show_all_options(self):
 	options = ['Go Deep', 'Add Note', 'Add Reminder', 'Add Act']
 	option = SSCdialogs.SClist_dialog(title = 'Choose an option', items=options, frame=self.view.frame)
-	patient = self.LDS.items[self.LDS.selected_row]
+	
+	caller = self.LDS.items[self.LDS.selected_row]
+	if isinstance(caller, Patient):
+		patient_id = caller.id
+	if isinstance(caller, Act):
+		patient_id = caller.patient_id
+		
 	session = Session()
 	if option == 'Go Deep' :
 		tabs = ['Visits', 'Notes', 'Reminders']
 		items_toAdd = [{'title':'Act', 'object':Act()}]
-		Morpheus(Act, items_toAdd, frame = self.view.frame, tabs_contents = tabs, patient_id = patient.id)
+		Morpheus(Act, items_toAdd, frame = self.view.frame, tabs_contents = tabs, patient_id = patient_id)
 	if option == 'Add Act':
 		#print("ADD ACT")
 		items_toAdd = [{'title':'Act', 'object':Act()}]
-		self.add_item(items_toAdd, pt_id = patient.id)
+		self.add_item(items_toAdd, pt_id = patient_id)
 		#AddAct(patient).toDB(process.prompt_data(), session)
 	session.close()
 	self.table.reload()
