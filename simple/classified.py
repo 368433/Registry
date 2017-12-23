@@ -69,7 +69,9 @@ class _MorpheusContainer (object):
 			self.parse_segments()
 		
 		def add_item(sender):
-			self.add_item(self.items_toAdd)
+			if self.patient_id:
+				pt_id = self.patient_id
+				self.add_item(self.items_toAdd, pt_id = pt_id)
 		
 		def show_options(sender):
 			show_all_options(self)
@@ -122,7 +124,7 @@ class _MorpheusContainer (object):
 			self.LDS.items = session.query(Patient).all()
 		session.close()
 		
-	def add_item(self, items):
+	def add_item(self, items, pt_id=None):
 		#items is a list of dictionaries containing a title of section
 		#and an object to be created.
 		#The attribute of the object are the entries in the form
@@ -156,8 +158,8 @@ class _MorpheusContainer (object):
 				if column == 'id' or column == 'last_seen':
 					continue
 				elif column == 'patient_id':
-					if self.patient_id:
-						setattr(inclusion, column, self.patient_id)
+					if pt_id:
+						setattr(inclusion, column, pt_id)
 				else:
 					setattr(inclusion, column, data[column])	
 			session.add(inclusion)
@@ -208,7 +210,9 @@ def show_all_options(self):
 		items_toAdd = [{'title':'Act', 'object':Act()}]
 		Morpheus(Act, items_toAdd, frame = self.view.frame, tabs_contents = tabs, patient_id = patient.id)
 	if option == 'Add Act':
-		print("ADD ACT")
+		#print("ADD ACT")
+		items_toAdd = [{'title':'Act', 'object':Act()}]
+		self.add_item(items_toAdd, pt_id = patient.id)
 		#AddAct(patient).toDB(process.prompt_data(), session)
 	session.close()
 	self.table.reload()
@@ -229,6 +233,7 @@ def Morpheus(db_object, items_toAdd, frame=None, tabs_contents=None, patient_id=
 	c = _MorpheusContainer(items_toAdd, frame=frame, tabs_contents = tabs_contents, patient_id=patient_id, extra_data=extra_data)
 	c.populate_list(db_object)
 	c.update_list()
+	#return  c.view
 	c.view.present('sheet')
 	#c.view.wait_modal()
 

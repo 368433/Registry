@@ -5,7 +5,7 @@
         "nodes" : [
 
         ],
-        "frame" : "{{48, 209}, {107, 103}}",
+        "frame" : "{{0, 599}, {93, 51}}",
         "class" : "Button",
         "attributes" : {
           "action" : "show_morpheus",
@@ -23,7 +23,7 @@
         "nodes" : [
 
         ],
-        "frame" : "{{48, 351}, {107, 102}}",
+        "frame" : "{{92, 599}, {85, 51}}",
         "class" : "Button",
         "attributes" : {
           "action" : "",
@@ -35,13 +35,13 @@
           "name" : "button1",
           "font_size" : 15
         },
-        "selected" : true
+        "selected" : false
       },
       {
         "nodes" : [
 
         ],
-        "frame" : "{{188, 209}, {106, 103}}",
+        "frame" : "{{262, 599}, {88, 51}}",
         "class" : "Button",
         "attributes" : {
           "frame" : "{{135, 309}, {80, 32}}",
@@ -58,7 +58,7 @@
         "nodes" : [
 
         ],
-        "frame" : "{{188, 351}, {107, 102}}",
+        "frame" : "{{173, 599}, {89, 51}}",
         "class" : "Button",
         "attributes" : {
           "frame" : "{{135, 309}, {80, 32}}",
@@ -70,15 +70,29 @@
           "font_size" : 15
         },
         "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{0, 0}, {350, 599}}",
+        "class" : "View",
+        "attributes" : {
+          "frame" : "{{125, 275}, {100, 100}}",
+          "class" : "View",
+          "name" : "view1",
+          "uuid" : "F15863C6-3BD4-4C8E-8094-595D385D83E4"
+        },
+        "selected" : true
       }
     ],
     "frame" : "{{0, 0}, {350, 650}}",
     "class" : "View",
     "attributes" : {
-      "custom_class" : "",
-      "enabled" : true,
       "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "enabled" : true,
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "custom_class" : "",
       "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
       "flex" : ""
     },
