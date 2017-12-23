@@ -113,7 +113,7 @@ class _MorpheusContainer (object):
 			if self.extra_data.name == 'todaytab' :
 				self.extra_data.enabled = True
 			self.LDS.items = session.query(Patient).filter(Patient.is_active == True, Patient.is_inpatient == True).all()
-		if option == 'Visits' :
+		if option == 'All Acts' :
 			if self.patient_id:
 				self.LDS.items = session.query(Act).filter(Act.patient_id == self.patient_id).all()
 		if option == 'Notes':
@@ -203,7 +203,7 @@ def show_full_data(sender):
 
 @ui.in_background
 def show_all_options(self):
-	options = ['Go Deep', 'Add Note', 'Add Reminder', 'Add Act']
+	options = ['See All Acts', 'Add Note', 'Add Reminder', 'Add Act']
 	option = SSCdialogs.SClist_dialog(title = 'Choose an option', items=options, frame=self.view.frame)
 	
 	caller = self.LDS.items[self.LDS.selected_row]
@@ -213,8 +213,8 @@ def show_all_options(self):
 		patient_id = caller.patient_id
 		
 	session = Session()
-	if option == 'Go Deep' :
-		tabs = ['Visits', 'Notes', 'Reminders']
+	if option == 'See All Acts' :
+		tabs = ['All Acts', 'Notes', 'Reminders']
 		items_toAdd = [{'title':'Act', 'object':Act()}]
 		Morpheus(Act, items_toAdd, frame = self.view.frame, tabs_contents = tabs, patient_id = patient_id)
 	if option == 'Add Act':
