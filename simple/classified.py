@@ -1,4 +1,4 @@
-import ui, dialogs, SSCdialogs, console
+import ui, dialogs, AIdialogs, console, photos, datetime, hashlib
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database import Patient, Act
@@ -141,7 +141,7 @@ class _MorpheusContainer (object):
 			object = item.get('object',None)
 			section = (title, get_entry_fields(object))
 			query_fields.append(section)
-		data = SSCdialogs.SCform_dialog(sections = query_fields, frame=self.view.frame)
+		data = AIdialogs.form_dialog(sections = query_fields, frame=self.view.frame)
 		
 		#CHECK DATA INTEGRITY
 		if data is None:
@@ -149,7 +149,8 @@ class _MorpheusContainer (object):
 		for i, item in enumerate(items):
 			if isinstance(item.get('object'), Patient):
 				if data['fname'] == '' and data['lname'] == '' and data['mrn'] == '' and data['ramq'] == '':
-					console.alert(title='Patient Not Created', message='You need at least one valid unique patient ID')
+					#dialogs.hud_alert("Patient not created. At least one valid unique identifier required")
+					console.alert(title='Patient Not Created', message='At least one valid unique identifier require')
 					return
 
 		#ADD TO DATABASE
@@ -189,12 +190,13 @@ class _MorpheusContainer (object):
 		session.commit()
 		session.close()
 
-@ui.in_background
+#@ui.in_background
 def show_full_data(sender):
 	item = sender.LDS.items[sender.LDS.tapped_accessory_row]
 	field = get_entry_fields(item, subject = item)
 	section = [('Selected Data', field)]
-	updated = SSCdialogs.SCform_dialog(sections=[('Selected data', field)], frame = sender.view.frame)
+	updated = AIdialogs.form_dialog(sections=[('Selected data', field)], frame = sender.view.frame)
+
 	if updated:
 		#update database entry
 		sender.update_db(item, updated)
@@ -204,7 +206,7 @@ def show_full_data(sender):
 @ui.in_background
 def show_all_options(self):
 	options = ['See All Acts', 'Add Note', 'Add Reminder', 'Add Act']
-	option = SSCdialogs.SClist_dialog(title = 'Choose an option', items=options, frame=self.view.frame)
+	option = AIdialogs.list_dialog(title = 'Choose an option', items=options, frame=self.view.frame)
 	
 	caller = self.LDS.items[self.LDS.selected_row]
 	if isinstance(caller, Patient):
@@ -224,7 +226,7 @@ def show_all_options(self):
 		#AddAct(patient).toDB(process.prompt_data(), session)
 	session.close()
 	self.table.reload()
-		
+
 
 def get_entry_fields(item, subject = None):
 	#item has to be an instance of Patient, Act, etc....
@@ -248,7 +250,7 @@ def Morpheus(db_object, items_toAdd, frame=None, tabs_contents=None, patient_id=
 
 def get_fields(item):
 	if isinstance(item, Patient):
-		return [{'type':'photo' ,'key':'card_photo' ,'value':'' ,'title':'Photo' },
+		return [{'type':'photo' ,'key':'idCard_path' ,'value':'' ,'title':'Photo' },
 						{'type':'text' ,'key':'fname' ,'value':'' ,'title':'First name' },
 						{'type':'text' ,'key':'lname' ,'value':'' ,'title':'Last name' },
 						{'type':'check' ,'key':'is_female' ,'value':False ,'title':'Genre Female' },
@@ -261,7 +263,7 @@ def get_fields(item):
 						{'type':'check' ,'key':'is_active' ,'value':True ,'title':'Active' },
 						{'type':'check' ,'key':'is_inpatient' ,'value':True ,'title':'Inpatient' }]
 	if isinstance(item, Act):
-		return [{'type':'photo' ,'key':'act_photo' ,'value':'' ,'title':'Photo' },
+		return [{'type':'photo' ,'key':'act_photo_path' ,'value':'' ,'title':'Photo' },
 						{'type':'text' ,'key':'subject' ,'value':'' ,'title':'subject' },
 						{'type':'text' ,'key':'root_act' ,'value':'-1' ,'title':'Root Act' },
 						{'type':'segmented' ,'key':'facility' ,'choice':'HPB|ICM|PCV', 'value':'' ,'title':'Facility' },

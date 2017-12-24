@@ -32,7 +32,7 @@ class Patient(Base):
 	next_visit = Column(DateTime)
 	last_seen = Column(String)
 	is_female = Column(Boolean)
-	card_photo = Column(String)#the hash of the photo stored at capture/hash.jpeg	
+	idCard_path = Column(String)#the hash of the photo stored at capture/hash.jpeg	
 	
 	def __repr__(self):
 		return "{0} {1} - mrn:{2}".format(self.fname, self.lname, self.mrn)
@@ -55,7 +55,7 @@ class Act(Base):
 	diagnosis = Column(String)
 	bed = Column(String)
 	addendum = Column(String) #useful for extra info like type of MIEE, etc...
-	act_photo = Column(String)# a comma separated list of hashes of the act’s note’s photo stored at capture/hash.jpeg
+	act_photo_path = Column(String)# a comma separated list of hashes of the act’s note’s photo stored at capture/hash.jpeg
 	
 	def __repr__(self):
 		return "{0}, Dx:{1}, Bed:{2}".format(self.type, self.diagnosis, self.bed)
